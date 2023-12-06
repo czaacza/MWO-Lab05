@@ -3,8 +3,6 @@ import json
 import os
 
 pat = os.getenv('PTA')
-pat = '23jq4zgwxrochogu3k7nhy36oqq56vv3i5tbyxc47mxzc3ya2q4q'
-# pat
 
 organization = '01169549'  
 project = 'Lab05-MWO'            
