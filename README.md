@@ -17,12 +17,12 @@ Dodatkowo, proszę przygotować prezentację wideo, która pokaże funkcjonowani
 
 W ramach projektu skonfigurowałem Pipeline CI/CD wykorzystujący Github Actions. Pipeline uruchamia testy UI dla każdego pull requesta dla tego repozytorium. Testy UI przygotowane w Selenium sprawdzają poprawność operacji CRUD w aplikacji webowej.
 
-<img src="https://github.com/czaacza/MWO-Lab05/tree/master/img/crud.png">
-
-<img src="https://github.com/czaacza/MWO-Lab05/tree/master/img/done.png">
+![alt text](https://github.com/czaacza/MWO-Lab05/tree/master/img/crud.png)
+![alt text](https://github.com/czaacza/MWO-Lab05/tree/master/img/done.png)
+![alt text](https://github.com/czaacza/MWO-Lab05/tree/master/img/python.png)
+![alt text](https://github.com/czaacza/MWO-Lab05/tree/master/img/secrets.png)
 
 Po skonfigurowaniu Github Actions, stworzyłem projekt na Azure Devops oraz Pythonowy skrypt wysyłający request do Azure Devops API tworzący work items. 
 Personal Access Token został przechowany jako zmienna secrets w tym repozytorium.
 
-<img src="https://github.com/czaacza/MWO-Lab05/tree/master/img/python.png">
-<img src="https://github.com/czaacza/MWO-Lab05/tree/master/img/secrets.png">
+
