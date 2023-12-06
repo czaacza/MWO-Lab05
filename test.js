@@ -1,21 +1,52 @@
-const { Builder, By } = require('selenium-webdriver');
+const { Builder, By, until } = require('selenium-webdriver');
 const assert = require('assert');
 
 describe('CRUD Application', function () {
   let driver;
 
+  // Increase the timeout to allow for longer test execution (adjust as needed)
   this.timeout(10000);
 
+  // Initialize the Selenium WebDriver before running tests
   before(async function () {
-    driver = await new Builder().forBrowser('chrome').build();
+    try {
+      // Use headless mode for Chrome
+      const capabilities = {
+        'goog:chromeOptions': {
+          args: ['--headless', '--disable-gpu', '--no-sandbox'],
+        },
+      };
+
+      driver = await new Builder()
+        .forBrowser('chrome')
+        .withCapabilities(capabilities)
+        .build();
+
+      console.log('Driver initialized successfully');
+
+      await driver.get('http://localhost:5500'); // Open the application
+    } catch (error) {
+      console.error('Error during driver initialization:', error);
+    }
   });
 
+  // Clean up and close the WebDriver after running tests
   after(async function () {
-    await driver.quit();
+    try {
+      if (driver) {
+        await driver.quit();
+        console.log('Driver quit successfully');
+      }
+    } catch (error) {
+      console.error('Error quitting the driver:', error);
+    }
   });
 
   it('should perform CRUD operations', async function () {
-    await driver.get('http://localhost:5500');
+    if (!driver) {
+      console.error('Driver is undefined, skipping test');
+      return;
+    }
 
     // Create operation
     const contentInput = await driver.findElement(By.id('content'));
@@ -57,4 +88,3 @@ describe('CRUD Application', function () {
     );
   });
 });
-// Run the test
