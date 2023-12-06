@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CRUD App</title>
+  </head>
+  <body>
+    <h1>Simple CRUD Application</h1>
+    <textarea id="content"></textarea><br />
+    <button onclick="createData()">Create</button>
+    <button onclick="readData()">Read</button>
+    <button onclick="updateData()">Update</button>
+    <button onclick="deleteData()">Delete</button>
+
+    <script>
+      const apiUrl = 'http://localhost:3000';
+
+      function createData() {
+        const content = document.getElementById('content').value;
+        fetch(`${apiUrl}/create`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ content }),
+        });
+      }
+
+      function readData() {
+        fetch(`${apiUrl}/read`)
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById('content').value = data;
+          });
+      }
+
+      function updateData() {
+        const content = document.getElementById('content').value;
+        fetch(`${apiUrl}/update`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ content }),
+        });
+      }
+
+      function deleteData() {
+        fetch(`${apiUrl}/delete`, {
+          method: 'POST',
+        });
+        document.getElementById('content').value = '';
+      }
+    </script>
+  </body>
+</html>
