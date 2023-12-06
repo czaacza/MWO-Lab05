@@ -1,0 +1,28 @@
+name: Azure DevOps Integration
+
+on:
+  pull_request:
+    branches: [main] # Uruchamia workflow dla pull requestów do głównej gałęzi
+
+jobs:
+  create-work-item:
+    runs-on: ubuntu-latest # Definiuje środowisko wykonawcze
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2 # Pobiera kod z repozytorium
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8' # Określa wersję Pythona
+
+      - name: Install Dependencies
+        run: |
+          pip install requests
+
+      - name: Run Azure DevOps Integration Script
+        env:
+          PTA: ${{ secrets.PTA }} # Używa PAT zdefiniowanego w sekretach repozytorium
+        run: |
+          python script.py
